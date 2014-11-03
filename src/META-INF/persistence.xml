@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="introsde-jpa">
+
+        <class>introsde.solution.ehealth.model.MeasureType</class>
+        <class>introsde.solution.ehealth.model.MeasureHistory</class>
+        <class>introsde.solution.ehealth.model.Person</class>
+        <class>introsde.solution.ehealth.model.HealthProfile</class>
+        <class>introsde.solution.ehealth.dozer.PersonBean</class>
+        <class>introsde.solution.ehealth.dozer.MeasureTypeBean</class>
+        <class>introsde.solution.ehealth.dozer.MeasureHistoryBean</class>
+        <properties>
+            <!-- the jdbc driver we will use to connect to the database change it
+                depending of what database you use -->
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
+            <!-- the last part of the url is the path to the sqlite file of the db,
+                in this case it should be on the root folder of the project -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:personsLife.sqlite" />
+            <!-- set it to ALL to see all the JPA related debugging information -->
+            <property name="eclipselink.logging.level" value="INFO" />
+            <!-- we will use this to automatically add elements to our database if
+                we modify the Java model -->
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
+            <!-- it means that automatic changes will be directly applied to the database
+                this is not reccommended, but we will use it as example only -->
+            <property name="eclipselink.ddl-generation.output-mode"
+                      value="database" />
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="introsde-jpa-h2">
+        <class>model.Measurement</class>
+        <class>model.MeasureType</class>
+        <class>model.Person</class>
+        <class>dozer.HealthProfile</class>
+        <class>dozer.PersonBean</class>
+        <class>dozer.MeasureTypes</class>
+        <class>dozer.MeasureHistoryBean</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/personsLife" />
+            <property name="javax.persistence.jdbc.user" value="" />
+            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="eclipselink.logging.level" value="ALL" />
+            <property name="eclipselink.ddl-generation" value="create-tables" />
+        </properties>
+    </persistence-unit>
+
+</persistence>
